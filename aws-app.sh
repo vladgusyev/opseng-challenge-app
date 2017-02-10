@@ -25,7 +25,7 @@ if [[ -f $PIP_PATH ]];then
 			0 ) STARTAPP;
 				ECHOURL;
 				;;
-			1 ) /usr/bin/virtualenv pvenv &>/dev/null;
+			1 ) /usr/bin/virtualenv pvenv >/dev/null;
 				STARTAPP;
 				ECHOURL;
 				;;
