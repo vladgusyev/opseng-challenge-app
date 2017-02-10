@@ -22,10 +22,7 @@ $ROOT_DIR/$PYTHON_VENV/bin/gunicorn app:app &> $ROOT_DIR/gunicorn.log &
 if [[ -f $PIP_PATH ]];then
 	if [[ $APP_FILE_DEP -eq 0 ]];then
 		case $VIRTUALENV_DEP in
-			0 ) STARTAPP;
-				ECHOURL;
-				;;
-			1 ) /usr/bin/virtualenv pvenv >/dev/null;
+			0|1 ) /usr/bin/virtualenv pvenv >/dev/null;
 				STARTAPP;
 				ECHOURL;
 				;;
