@@ -13,6 +13,7 @@ STARTAPP(){
 /usr/bin/virtualenv pvenv &>/dev/null
 source "$ROOT_DIR/$PYTHON_VENV/bin/activate" &>/dev/null
 $ROOT_DIR/$PYTHON_VENV/bin/easy_install gunicorn flask &> $ROOT_DIR/easy_install.log &
+wait
 $ROOT_DIR/$PYTHON_VENV/bin/gunicorn app:app &> $ROOT_DIR/gunicorn.log &
 ECHOURL
 }
