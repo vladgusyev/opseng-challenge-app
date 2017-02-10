@@ -18,13 +18,17 @@ $ROOT_DIR/$PYTHON_VENV/bin/gunicorn app:app &> $ROOT_DIR/gunicorn.log &
 ECHOURL
 }
 
-
-if [[ -f $PIP_PATH ]];then
-	if [[ $APP_FILE_DEP -eq 0 ]];then
-		STARTAPP
+if [[ ! -z `rpm -qa | grep nginx` ]];then
+	service nginx restart &>/dev/null
+	if [[ -f $PIP_PATH ]];then
+		if [[ $APP_FILE_DEP -eq 0 ]];then
+			STARTAPP
+		else
+			printf "Failed to find $APP_NAME in $ROOT_DIR, cannot continue";exit;
+		fi
 	else
-		printf "Failed to find $APP_NAME in $ROOT_DIR, cannot continue";exit;
+		printf "Could not locate $PIP_PATH, cannot continue";exit;
 	fi
 else
-	printf "Could not locate $PIP_PATH, cannot continue";exit;
+	printf "Could not find ngnix rpm installed on system";exit;
 fi
