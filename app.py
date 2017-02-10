@@ -17,4 +17,4 @@ def hello():
   return page.format(os.getcwd())
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
